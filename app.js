@@ -47,6 +47,7 @@ const bot = new Client({
 
 // Create a new instance of the Player class
 bot.player = new Player(bot);
+if (!bot.cooldowns) bot.cooldowns = new Map();
 
 const connection = mysql.createConnection({
   host: '127.0.0.1',

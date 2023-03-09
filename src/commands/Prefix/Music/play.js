@@ -1,5 +1,5 @@
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
-const { Player } = require('discord-player');
+const { QueryType, Player } = require('discord-player');
 
 module.exports = {
   config: {
@@ -16,6 +16,9 @@ module.exports = {
     userPerms: ['SendMessages'],
     ownerOnly: false
   },
+  status: {
+    underConstructions: true
+},
   run: async (bot, message, args) => {
     try {
       const voiceChannel = message.member.voice.channel;
@@ -29,21 +32,24 @@ module.exports = {
         adapterCreator: message.guild.voiceAdapterCreator,
       });
 
-      const player = new Player({
+      Player.createQueue(message.guild, {
+        volume: 50,
         leaveOnEnd: false,
         leaveOnStop: false,
-        leaveOnEmpty: false,
-        timeout: 10,
-        volume: 50,
-        quality: 'high',
-      });
-
-      const queue = player.createQueue(message.guild, {
-        metadata: {
-          channel: message.channel,
+        leaveOnEmpty: true,
+        leaveOnEmptyCooldown: 300000,
+        autoSelfDeaf: true,
+        spotifyBridge: true,
+        ytdlOptions: {
+            filter: "audioonly",
+            opusEncoded: true,
+            quality: "highestaudio",
+            highWaterMark: 1 << 30,
         },
-        connection: connection,
-      });
+        metadata: {
+            channel: message.channel,
+        },
+    });
 
       const song = args.join(' ');
       const track = await player.searchTracks(song, {
@@ -69,3 +75,4 @@ module.exports = {
     }
   },
 };
+
