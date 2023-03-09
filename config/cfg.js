@@ -69,6 +69,6 @@ module.exports = {
     },
 
     webHooks: {
-        errorWebhookUrl: "https://discord.com/api/webhooks/1082421657764900934/lEDAcH8pMalaACha3RXW9DI1tewm5ltxbzO2l0vJfAw6L43k_sc0NGZydw-w-u2kRAwo",
+        errorWebhookUrl: "https://discord.com/api/webhooks/1083255693538234448/Z-nNt6U99hTxEM0uG7EP5dUj-ThXpUaNB4sjNojsZDBbysOymnE6OFrUTwWs0j1_w5fV",
     }
 }

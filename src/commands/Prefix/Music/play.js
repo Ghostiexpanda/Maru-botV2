@@ -32,7 +32,7 @@ module.exports = {
         adapterCreator: message.guild.voiceAdapterCreator,
       });
 
-      Player.createQueue(message.guild, {
+      player.createQueue(message.guild, {
         volume: 50,
         leaveOnEnd: false,
         leaveOnStop: false,
